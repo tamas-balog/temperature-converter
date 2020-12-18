@@ -4,8 +4,12 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 class TemperatureConverterTest {
     TemperatureConverter converter;
+    private static final int ROUND_PLACES = 8;
 
     @BeforeEach
     void setUp() {
@@ -24,7 +28,7 @@ class TemperatureConverterTest {
 
     @Test
     public void test0FahrenheitToCelsius() {
-        Assertions.assertEquals((-32) * 5.0 / 9, converter.fahrenheitToCelsius(0));
+        Assertions.assertEquals(-17.77777778, round(converter.fahrenheitToCelsius(0), ROUND_PLACES));
     }
 
     @Test
@@ -39,6 +43,15 @@ class TemperatureConverterTest {
 
     @Test
     public void test0FahrenheitToKelvin() {
-        Assertions.assertEquals(459.67 * 5.0 / 9, converter.fahrenheitToKelvin(0));
+        Assertions.assertEquals(255.37222222, round(converter.fahrenheitToKelvin(0), ROUND_PLACES));
+    }
+
+    public static double round(double number, int places) {
+        if (places < 0) {
+            throw new IllegalArgumentException();
+        }
+        BigDecimal bigDecimal = BigDecimal.valueOf(number);
+        bigDecimal = bigDecimal.setScale(places, RoundingMode.HALF_UP);
+        return bigDecimal.doubleValue();
     }
 }
