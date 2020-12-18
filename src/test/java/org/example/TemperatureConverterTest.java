@@ -46,6 +46,16 @@ class TemperatureConverterTest {
         Assertions.assertEquals(255.37222222, round(converter.fahrenheitToKelvin(0), ROUND_PLACES));
     }
 
+    @Test
+    public void test451FahrenheitToCelsius() {
+        Assertions.assertEquals(232.77777778, round(converter.fahrenheitToCelsius(451), ROUND_PLACES));
+    }
+
+    @Test
+    public void testRealNumberKelvinToFahrenheit() {
+        Assertions.assertEquals(-59.4, round(converter.kelvinToFahrenheit(222.37222222), ROUND_PLACES));
+    }
+
     public static double round(double number, int places) {
         if (places < 0) {
             throw new IllegalArgumentException();

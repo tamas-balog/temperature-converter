@@ -19,11 +19,11 @@ public class TemperatureConverter {
     }
 
     public double celsiusToFahrenheit(double celsius) {
-        return celsius * (FAHRENHEIT_RATIO * -1) + FAHRENHEIT_CELSIUS_OFFSET;
+        return celsius * Math.pow(FAHRENHEIT_RATIO, -1) + FAHRENHEIT_CELSIUS_OFFSET;
     }
 
     public double kelvinToFahrenheit(double kelvin) {
-        return kelvin * (FAHRENHEIT_RATIO * -1) + ABSOLUTE_ZERO_IN_FAHRENHEIT;
+        return kelvin * Math.pow(FAHRENHEIT_RATIO, -1) + ABSOLUTE_ZERO_IN_FAHRENHEIT;
     }
 
     public double fahrenheitToKelvin(double fahrenheit) {
