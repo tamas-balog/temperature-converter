@@ -22,14 +22,14 @@ public class TemperatureConverter {
     }
 
     public double fahrenheitToCelsius(double fahrenheit) {
-        if (fahrenheitToKelvin(fahrenheit) < 0) {
+        if (fahrenheit < ABSOLUTE_ZERO_IN_FAHRENHEIT) {
             throw new IllegalArgumentException("Argument is smaller than absolute zero");
         }
         return (fahrenheit - FAHRENHEIT_CELSIUS_OFFSET) * FAHRENHEIT_RATIO;
     }
 
     public double celsiusToFahrenheit(double celsius) {
-        if (celsiusToKelvin(celsius) < 0) {
+        if (celsius < ABSOLUTE_ZERO_IN_CELSIUS) {
             throw new IllegalArgumentException("Argument is smaller than absolute zero");
         }
 //        return kelvinToFahrenheit(celsiusToKelvin(celsius));
