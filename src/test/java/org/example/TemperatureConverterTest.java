@@ -56,6 +56,16 @@ class TemperatureConverterTest {
         Assertions.assertEquals(-59.4, round(converter.kelvinToFahrenheit(222.37222222), ROUND_PLACES));
     }
 
+    @Test
+    void shouldThrowExceptionIfSmallerThanAbsoluteZero() {
+        Assertions.assertThrows(IllegalArgumentException.class, () -> converter.kelvinToCelsius(-1));
+    }
+
+    @Test
+    void shouldThrowExceptionIfResultIsSmallerThanAbsoluteZero() {
+        Assertions.assertThrows(IllegalArgumentException.class, () -> converter.celsiusToKelvin(-278.15));
+    }
+
     public static double round(double number, int places) {
         if (places < 0) {
             throw new IllegalArgumentException();

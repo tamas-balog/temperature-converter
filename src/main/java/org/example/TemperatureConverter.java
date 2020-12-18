@@ -7,26 +7,47 @@ public class TemperatureConverter {
     private static final double FAHRENHEIT_CELSIUS_OFFSET = 32;
 
     public double kelvinToCelsius(double kelvin) {
+        if (kelvin < 0) {
+            throw new IllegalArgumentException("Argument is smaller than absolute zero");
+        }
         return kelvin + ABSOLUTE_ZERO_IN_CELSIUS;
     }
 
     public double celsiusToKelvin(double celsius) {
-        return celsius - ABSOLUTE_ZERO_IN_CELSIUS;
+        double result = celsius - ABSOLUTE_ZERO_IN_CELSIUS;
+        if (result < 0) {
+            throw new IllegalArgumentException("Argument is smaller than absolute zero");
+        }
+        return result;
     }
 
     public double fahrenheitToCelsius(double fahrenheit) {
+        if (fahrenheitToKelvin(fahrenheit) < 0) {
+            throw new IllegalArgumentException("Argument is smaller than absolute zero");
+        }
         return (fahrenheit - FAHRENHEIT_CELSIUS_OFFSET) * FAHRENHEIT_RATIO;
     }
 
     public double celsiusToFahrenheit(double celsius) {
+        if (celsiusToKelvin(celsius) < 0) {
+            throw new IllegalArgumentException("Argument is smaller than absolute zero");
+        }
+//        return kelvinToFahrenheit(celsiusToKelvin(celsius));
         return celsius * Math.pow(FAHRENHEIT_RATIO, -1) + FAHRENHEIT_CELSIUS_OFFSET;
     }
 
     public double kelvinToFahrenheit(double kelvin) {
+        if (kelvin < 0) {
+            throw new IllegalArgumentException("Argument is smaller than absolute zero");
+        }
         return kelvin * Math.pow(FAHRENHEIT_RATIO, -1) + ABSOLUTE_ZERO_IN_FAHRENHEIT;
     }
 
     public double fahrenheitToKelvin(double fahrenheit) {
-        return (fahrenheit - ABSOLUTE_ZERO_IN_FAHRENHEIT) * FAHRENHEIT_RATIO;
+        double result = (fahrenheit - ABSOLUTE_ZERO_IN_FAHRENHEIT) * FAHRENHEIT_RATIO;
+        if (result < 0) {
+            throw new IllegalArgumentException("Argument is smaller than absolute zero");
+        }
+        return result;
     }
 }
